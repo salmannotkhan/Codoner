@@ -1,0 +1,62 @@
+.playarea {
+  display: flex;
+  height: 100%;
+  flex: 1;
+}
+.playarea .questionarea {
+  border-right: 1px solid var(--Heather);
+  background-color: var(--BlackPearl);
+  min-width: 40%;
+}
+.playarea .main {
+  flex: 1;
+}
+.playarea .main form {
+  display: flex;
+  flex-direction: column;
+  min-height: 70%;
+  background-color: var(--BlackPearl);
+}
+.playarea .main form input,
+.playarea .main form select {
+  padding: 10px 0px;
+  border: 1px solid var(--Heather);
+  margin: 5px;
+  min-width: 100px;
+  border-radius: 5px;
+  margin-left: 15px;
+  background-color: inherit;
+  color: inherit;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.playarea .main form input {
+  padding: 10px 20px;
+  background-color: #71a6b1;
+  font-size: 15px;
+  margin-right: 7.5px;
+}
+.playarea .main textarea {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid var(--Heather);
+  font-family: Consolas, "Courier New", monospace;
+  background-color: var(--BlackPearl);
+}
+.playarea .main textarea:focus {
+  outline: none;
+}
+
+.terminal {
+  display: flex;
+  flex-direction: column;
+  min-height: 30%;
+  background-color: var(--BlackPearl);
+}
+.terminal .output {
+  padding: 10px;
+  flex: 1;
+  background-color: var(--BlackPearl);
+}/*# sourceMappingURL=playground.css.map */

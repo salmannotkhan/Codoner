@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Add Question {% endblock %}
+	
+{% block stylesheet %}
+	<link rel="stylesheet" href="{% static 'css/addQuestion.css' %}">
+{% endblock %}
+
+{% block content %}
+	<div class="scrollbox">
+		<div class="maincontainer">
+			<div class="container">
+				<h2>Question</h2>
+			<div class="block">
+				<span class="label">Title</span>
+				<input type="text" name="" id="" class="txtbox" />
+			</div>
+			
+			<div class="block">
+				<span class="label">Description</span>
+			</div>
+			
+			<div class="block">
+				<textarea
+					class="txtarea"
+					name=""
+					id=""
+					rows="10"
+					cols="40"
+				></textarea>
+			</div>
+		</div>
+		
+		<div class="container">
+			<h2>Test Case 1</h2>
+			<div class="block">
+				<span class="label input-label">Input</span>
+				<input type="text" name="" id="" class="txtbox" />
+			</div>
+			<div class="block">
+				<span class="label">Output</span>
+			</div>
+			<div class="block">
+				<textarea
+				class="txtarea"
+				name=""
+				id=""
+					rows="10"
+					cols="40"
+					></textarea>
+			</div>
+		</div>
+		<div class="container">
+			<h2>Test Case 2</h2>
+			<div class="block">
+				<span class="label">Input</span>
+				<input type="text" name="" id="" class="txtbox" />
+			</div>
+			
+			<div class="block">
+				<span class="label">Output</span>
+			</div>
+			
+			<div class="block">
+				<textarea
+				class="txtarea"
+				name=""
+				id=""
+					rows="10"
+					cols="40"
+				></textarea>
+			</div>
+		</div>
+		
+		<div class="container">
+			<h2>Test Case 3</h2>
+			<div class="block">
+				<span class="label lable-input">Input</span>
+				<input type="text" name="" id="" class="txtbox" />
+			</div>
+			
+			<div class="block">
+				<span class="label">Output</span>
+			</div>
+
+			<div class="block">
+				<textarea
+					class="txtarea"
+					name=""
+					id=""
+					rows="10"
+					cols="40"
+					></textarea>
+				</div>
+			</div>
+			<div class="container">
+				<h2>Schedule</h2>
+				<div class="block">
+					<span class="label lable-input">Date</span>
+					<input type="date" name="" id="" class="txtbox" />
+				</div>
+				
+				<div class="block">
+					<span class="label lable-input">Time</span>
+					<input type="time" name="" id="" class="txtbox" />
+				</div>
+				
+				<div class="block">
+					<div class="label lable-input">Duration</div>					
+					<input id="hour" type="range" name="duration" value="1" min="0.5" max="10" step="0.5" oninput="showVal(this.value)" onchange="showVal(this.value)">
+					<div id="hourSelected">1 Hr</div>
+				</div>
+			</div>
+			<div class="container"></div>
+		</div>
+		<div class="inputrow">
+			<input type="submit" value="Back" class="submitbtn" />
+			<input type="submit" value="Next" class="submitbtn" />
+		</div>
+	</div>
+{% endblock %}
+{% block scripts %}
+	<script>
+		const maincontainer = document.getElementsByClassName('maincontainer')[0];
+		const hour = document.getElementById("hour")
+		const hourSpan = document.getElementById("hourSelected")
+        maincontainer.scrollTo(50, 0);
+		const submitbtn = document.getElementsByClassName('submitbtn')[1];
+		const backbtn = document.getElementsByClassName('submitbtn')[0];
+		var page = 0;
+
+		function showVal(x){
+			hourSpan.innerHTML = x 
+			if (parseFloat(x) > 1) {
+				hourSpan.innerHTML += ' Hrs'
+			}
+			else {
+				hourSpan.innerHTML += ' Hr'
+			}
+		}
+
+
+		submitbtn.addEventListener('click', function (e) {
+			if (page < 4) {
+				maincontainer.scrollBy(300, 0);
+				page++;
+			}
+            if (page == 4 ){
+                submitbtn.value = 'Submit'
+            }
+		});
+		backbtn.addEventListener('click', function (e) {
+			maincontainer.scrollBy(-300, 0);
+			page--;
+		});
+	</script>
+{% endblock %}

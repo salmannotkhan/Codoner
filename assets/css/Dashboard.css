@@ -1,0 +1,97 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Comfortaa', cursive;
+    --BlackPearl: #182025;
+    --FountainBlue: #71A6B1;
+    --Heather: #B8C2C6;
+    --Horizon: #608B95;
+}
+
+html,body{
+    height: 100%;
+    background: var(--BlackPearl);
+    color: var(--FountainBlue);
+}
+
+#logo{
+     color: var(--FountainBlue);
+}
+
+#faculty{
+    margin: 40px;
+    text-align: center;
+    color: var(--Heather);
+}
+
+.profile{
+    color: var(--FountainBlue);
+}
+
+/*Header*/
+header{
+    display: flex;
+    background: var(--BlackPearl);
+    height: 5%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    color: var(--FountainBlue);
+}
+
+hr{
+    display: none;
+}
+.btn{
+    padding: 10px 20px;
+    background:var(--FountainBlue);
+    color:var(--BlackPearl);
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+/*Dashboard*/
+
+.div1{
+    width:20%;
+    display: flex;
+    flex-direction: column;
+    color: var(--Heather);
+}
+
+.dash-wrapper{
+    justify-content: start;
+    display: flex;
+    align-items: center;
+    border: 1px solid transparent ;
+}
+
+img{
+    height: 25px;
+    width: 25px;
+    filter: invert(1);
+    padding:25px
+}
+input:focus,
+.dash-wrapper:hover{
+    box-shadow: 3px 3px 3px var(--Horizon);
+    border: 1px solid var(--Horizon);
+    transition: all .5s;
+    padding-left: 10px;
+    color: var(--FountainBlue);
+}
+
+.div1 a{
+    color: inherit;
+    background: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+}

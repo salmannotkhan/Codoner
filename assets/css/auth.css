@@ -1,0 +1,46 @@
+form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 15%;
+  padding: 35px;
+  align-items: center;
+  background-color: var(--bg-color);
+}
+form label {
+  align-self: flex-start;
+}
+form input {
+  width: 90%;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+  padding: 10px;
+  margin: 15px;
+  color: var(--font-color);
+  border: 1px solid var(--border-color);
+}
+form input[type=submit] {
+  background-color: #1c5263;
+  width: 50%;
+}
+form .error {
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 30px;
+  width: 90%;
+  background-color: #bd0000;
+  color: #c0b4b4;
+}
+form .row {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+form .row a {
+  padding: 10px;
+}
+form .row input {
+  margin-right: 0;
+}/*# sourceMappingURL=auth.css.map */

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %} {% endblock title %}</title>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+		{% block stylesheet %} {% endblock stylesheet %}
+	</head>
+	<body>
+		<header>
+			<h2 id="logo">Codoner
+			</h2>
+			{% if request.user.is_staff %}
+				<h3>
+					Faculty Dashboard
+				</h3>
+			{% endif %}
+			<div class="profile">
+				{% if request.user.is_authenticated %}
+					Hi, {{ request.user }}
+					<a href="/user/logout">Logout</a>
+				{% else %}
+					<a href="/user/login">Login</a>
+				{% endif %}
+			</div>
+		</header>
+		<div class="content">
+
+			{% if request.user.is_staff %}
+				<div class="div1">
+					<div class="dash-wrapper">
+						<img src="{% static 'images/question.png' %}">
+						<a href="/user/addquestion">Add Question</a>
+					</div>
+					<div class="dash-wrapper">
+						<img src="{% static 'images/result.png' %}">
+						<a href="#">View Result</a>
+					</div>
+					<div class="dash-wrapper">
+						<img src="{% static 'images/about.png' %}">
+						<a href="#">About Us</a>
+					</div>
+					<div class="dash-wrapper">
+						<img src="{% static 'images/contact.png' %}">
+						<a href="#">Contact Us</a>
+					</div>
+				</div>
+			{% endif %}
+			
+			{% block content %} {% endblock content %} 
+		</div>
+        {% block scripts %} {% endblock scripts %}
+	</body>
+</html>

@@ -1,0 +1,46 @@
+form {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	border-radius: 5px;
+	width: 15%;
+	padding: 35px;
+	align-items: center;
+	background-color: var(--bg-color);
+	label {
+		align-self: flex-start;
+	}
+	input {
+		width: 90%;
+		border-radius: 5px;
+		background-color: var(--bg-color);
+		padding: 10px;
+		margin: 15px;
+		color: var(--font-color);
+		border: 1px solid var(--border-color);
+		&[type='submit'] {
+			background-color: hsl(195, 56%, 25%);
+			width: 50%;
+		}
+	}
+	.error {
+		border-radius: 5px;
+		padding: 15px;
+		margin-bottom: 30px;
+		width: 90%;
+		background-color: hsl(0, 100%, 37%);
+		color: hsl(0, 9%, 73%);
+	}
+	.row {
+		display: flex;
+		width: 90%;
+		justify-content: space-between;
+		align-items: center;
+		a {
+			padding: 10px;
+		}
+		input {
+			margin-right: 0;
+		}
+	}
+}

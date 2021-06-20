@@ -1,0 +1,62 @@
+.top-portion {
+	display: flex;
+	min-height: 95%;
+	.problem {
+		background-color: black;
+		min-width: 40%;
+	}
+	div {
+		min-width: 60%;
+		form {
+			display: flex;
+			flex-direction: column;
+			min-height: 70%;
+			background-color: var(--bg-color);
+			color: var(--font-color);
+			.form-head {
+				input,
+				select {
+					border: 1px solid var(--border-color);
+					padding: 5px;
+					margin-left: 5px;
+					min-width: 100px;
+					appearance: none;
+					background-color: inherit;
+					color: inherit;
+				}
+			}
+			textarea {
+				flex: 1;
+				padding: 10px;
+				resize: none;
+				font-family: 'Droid Sans Mono', 'monospace', monospace,
+					'Droid Sans Fallback';
+				background-color: inherit;
+				color: inherit;
+				border: 1px solid var(--border-color);
+				&:focus-visible {
+					outline: none;
+				}
+			}
+		}
+		.terminal {
+			display: flex;
+			flex-direction: column;
+			min-height: 30%;
+			.output {
+				border-top: 1px solid var(--border-color);
+				padding: 10px;
+				flex: 1;
+				color: var(--font-color);
+				background-color: var(--bg-color);
+				font-family: 'Source Code Pro', monospace;
+				&.success {
+					color: hsl(120, 63%, 43%);
+				}
+				&.error {
+					color: hsl(0, 100%, 50%);
+				}
+			}
+		}
+	}
+}

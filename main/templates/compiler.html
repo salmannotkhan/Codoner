@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block title %} Codoner {% endblock title %} 
+{% block stylesheet %}
+	<link rel="stylesheet" href="{% static 'css/codeConsole.css' %}" />
+{% endblock stylesheet %}
+{% block content %}
+	<div class="top-portion">
+		<div class="problem">
+			<div class="head problem-head">
+				<h3>Question 1</h3>
+			</div>
+		</div>
+		<div>
+			<form>
+				{% csrf_token %}
+				<div class="head form-head">
+					<h3>Code Playground</h3>
+					Language:
+					<select name="language">
+						<option value="c">C</option>
+						<option value="py">Python</option>
+						<option value="java">Java</option>
+					</select>
+					<input
+						type="button"
+						value="Run"
+						onclick="sendreq()"
+						style="background-color: hsl(195, 56%, 25%)"
+					/>
+					<input
+						type="button"
+						value="Submit"
+						style="background-color: hsl(120, 42%, 37%)"
+					/>
+				</div>
+				<textarea name="code" spellcheck="false"></textarea>
+			</form>
+			<div class="terminal">
+				<div class="head"><h3>Output</h3></div>
+				<div class="output"></div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+{% block scripts %}
+	<script src="{% static 'js/codeExecution.js' %}"></script>
+{% endblock scripts %}

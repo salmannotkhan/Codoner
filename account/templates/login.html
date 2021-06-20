@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Login - Codoner {% endblock title %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
+{% endblock stylesheet %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+        {{ form }}
+        <div class="row">
+            <a href="/user/register">New User?</a>
+            <input type="submit" value="Login" />
+        </div>
+    </form>
+{% endblock content %} 
+{% block scripts %} {% endblock scripts %}

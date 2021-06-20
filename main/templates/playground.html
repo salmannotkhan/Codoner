@@ -1,0 +1,60 @@
+{% extends "base.html"%}
+{% load static %}
+{% block title %}Codoner{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/playground.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="playarea">
+        <div class="questionarea">
+            <div class="head">
+                <h3>
+                    Question 1
+                </h3>
+            </div>
+        </div>
+        <div class="main">
+            <form>
+                {% csrf_token %}
+                <div class="code_head head">
+                <h3 class="title">Code</h3>
+                    <div>
+                        Font-Size:
+                        <select name="Font" id="font">
+                            <option value="12px">12</option>
+                            <option value="14px">14</option>
+                            <option value="16px" selected>16</option>
+                            <option value="18px">18</option>
+                            <option value="20px">20</option>
+                            <option value="22px">22</option>
+                        </select>
+                        Language:
+                        <select name="language">
+                            <option value="c">C</option>
+                            <option value="py">Python</option>
+                            <option value="java">Java</option>
+                        </select>
+                        <input type="button" value="Submit">
+                        <input type="button" onclick="sendreq()" value="Run">
+                        <input type="button" value="Reset">
+                    </div>
+                </div>
+                <textarea name="code" spellcheck="false"></textarea>
+            </form>
+            <div class="terminal">
+                <div class="head"><h3>Output</h3></div>
+                <div class="output"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const fontsizeselector = document.getElementById("font");
+        const textareaselector = document.getElementsByTagName("textarea")[0];
+        fontsizeselector.addEventListener("click", function (e) {
+            textareaselector.style.fontSize = fontsizeselector.value
+        })
+    </script>
+    <script src="{% static 'js/codeExecution.js' %}"></script>
+{% endblock %}

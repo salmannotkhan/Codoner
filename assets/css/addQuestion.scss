@@ -1,0 +1,89 @@
+.scrollbox {
+	width: 85%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+#hourSelected {
+	font-size: 16px;
+	width: 60px;
+	margin-left: 15px;
+}
+
+input[type='range'] {
+	border: none;
+	&::-moz-range-track {
+		background: var(--Heather);
+	}
+	&::-moz-range-thumb {
+		background: var(--FountainBlue);
+		border-color: var(--FountainBlue);
+	}
+}
+
+.maincontainer {
+	display: flex;
+	background-color: var(--BlackPearl);
+	width: 30%;
+	overflow-x: hidden;
+	flex-wrap: nowrap;
+	scroll-behavior: smooth;
+	scroll-snap-type: x mandatory;
+}
+.label {
+	margin-right: 20px;
+	color: var(--Heather);
+}
+.txtarea {
+	flex: 1;
+	resize: none;
+	color: var(--Heather);
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	scroll-snap-align: center;
+	padding: 25px;
+	margin: 45px;
+}
+.submitbtn {
+	padding: 10px;
+	width: 50%;
+	display: flex;
+	width: min-content;
+	height: 50px;
+	border-radius: 5px;
+	font-size: 15px;
+	align-self: center;
+	background-color: var(--FountainBlue);
+	color: var(--BlackPearl);
+}
+.block {
+	margin: 10px 0px;
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+.txtbox {
+	flex: 1;
+	padding: 10px;
+}
+h2 {
+	color: var(--FountainBlue);
+	margin-bottom: 10px;
+}
+input,
+textarea {
+	background-color: inherit;
+	color: var(--Heather);
+	border: 1px solid var(--FountainBlue);
+	border-radius: 5px;
+}
+.inputrow {
+	width: 30%;
+	justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+}

@@ -1,0 +1,61 @@
+.top-portion {
+  display: flex;
+  min-height: 95%;
+}
+.top-portion .problem {
+  background-color: black;
+  min-width: 40%;
+}
+.top-portion div {
+  min-width: 60%;
+}
+.top-portion div form {
+  display: flex;
+  flex-direction: column;
+  min-height: 70%;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+}
+.top-portion div form .form-head input,
+.top-portion div form .form-head select {
+  border: 1px solid var(--border-color);
+  padding: 5px;
+  margin-left: 5px;
+  min-width: 100px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: inherit;
+  color: inherit;
+}
+.top-portion div form textarea {
+  flex: 1;
+  padding: 10px;
+  resize: none;
+  font-family: "Droid Sans Mono", "monospace", monospace, "Droid Sans Fallback";
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid var(--border-color);
+}
+.top-portion div form textarea:focus-visible {
+  outline: none;
+}
+.top-portion div .terminal {
+  display: flex;
+  flex-direction: column;
+  min-height: 30%;
+}
+.top-portion div .terminal .output {
+  border-top: 1px solid var(--border-color);
+  padding: 10px;
+  flex: 1;
+  color: var(--font-color);
+  background-color: var(--bg-color);
+  font-family: "Source Code Pro", monospace;
+}
+.top-portion div .terminal .output.success {
+  color: #29b329;
+}
+.top-portion div .terminal .output.error {
+  color: red;
+}/*# sourceMappingURL=codeConsole.css.map */

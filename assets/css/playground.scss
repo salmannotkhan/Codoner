@@ -1,0 +1,60 @@
+.playarea {
+	display: flex;
+	height: 100%;
+	flex: 1;
+	.questionarea {
+		border-right: 1px solid var(--Heather);
+		background-color: var(--BlackPearl);
+		min-width: 40%;
+	}
+	.main {
+		flex: 1;
+		form {
+			display: flex;
+			flex-direction: column;
+			min-height: 70%;
+			background-color: var(--BlackPearl);
+			input,
+			select {
+				padding: 10px 0px;
+				border: 1px solid var(--Heather);
+				margin: 5px;
+				min-width: 100px;
+				border-radius: 5px;
+				margin-left: 15px;
+				background-color: inherit;
+				color: inherit;
+				appearance: none;
+			}
+			input {
+				padding: 10px 20px;
+				background-color: #71a6b1;
+				font-size: 15px;
+				margin-right: 7.5px;
+			}
+		}
+		textarea {
+			flex: 1;
+			padding: 10px;
+			border: 1px solid transparent;
+			border-bottom: 1px solid var(--Heather);
+			font-family: Consolas, 'Courier New', monospace;
+			background-color: var(--BlackPearl);
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+}
+
+.terminal {
+	display: flex;
+	flex-direction: column;
+	min-height: 30%;
+	background-color: var(--BlackPearl);
+	.output {
+		padding: 10px;
+		flex: 1;
+		background-color: var(--BlackPearl);
+	}
+}
