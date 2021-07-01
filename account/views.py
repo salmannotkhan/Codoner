@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import UserForm
 from main.models import Question, TestCase
 
 
 def login_view(request):
     form = AuthenticationForm(request.POST or None)
     error = None
+    print(form.fields)
     if request.method == 'POST':
         user = authenticate(
             username=request.POST['username'], password=request.POST['password'])
@@ -23,20 +25,23 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/code/playground')
+    return redirect('/user/login')
 
 
 def signup_view(request):
-    form = UserCreationForm(request.POST or None)
+    form = UserForm()
+    print(form.fields)
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/user/login/')
-    return render(request, 'register.html', context={'form': form})
+        else:
+            print(form.errors)
+    return render(request, 'registernew.html', context={'form': form})
 
 
-@login_required(login_url='/user/login')
+@ login_required(login_url='/user/login')
 def dashboard_view(request):
     return render(request, 'dashboard.html')
 

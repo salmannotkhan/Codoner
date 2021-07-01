@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Registration - Codoner {% endblock title %}
+{% block stylesheet %}
+        <link rel="stylesheet" href="{% static 'css/registernew.css' %}">
+{% endblock %}
+{% block content %}
+<div class = "container">
+    <div class = "title">Registration</div>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">First Name</span>
+                {{ form.first_name }}
+            </div>
+            <div class="input-box">
+                <span class="details">Last Name</span>
+                {{ form.last_name }}
+            </div>
+            <div class="input-box">
+                <span class="details">Email</span>
+                {{ form.email }}
+            </div>
+            <div class="input-box">
+                <span class="details">Username</span>
+                {{ form.username }}
+            </div>
+            <div class="input-box">
+                <span class="details">Password</span>
+                {{ form.password1 }}
+                <br>
+                <span class="helptext"><br><ul><li>Your password can’t be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can’t be a commonly used password.</li><li>Your password can’t be entirely numeric.</li></ul></span>
+            </div>
+            <div class="input-box">
+                <span class="details">Password Confirmation</span>
+                {{ form.password2 }}
+            </div>
+            <div class="row">
+                <a href="/user/login">Alread have an Account?</a>
+                <input type="submit" value = "SignUp" name="SignUp">
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

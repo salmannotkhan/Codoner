@@ -20,7 +20,7 @@
 			{% endif %}
 			<div class="profile">
 				{% if request.user.is_authenticated %}
-					Hi, {{ request.user }}
+					Hi, {{ request.user.first_name }}
 					<a href="/user/logout">Logout</a>
 				{% else %}
 					<a href="/user/login">Login</a>

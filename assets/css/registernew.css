@@ -1,0 +1,66 @@
+.container {
+  max-width: 650px;
+  background-color: var(--BlackPearl);
+  padding: 50px;
+  color: var(--Heather);
+  border: 1px solid var(--FountainBlue);
+  border-radius: 5px;
+  margin: 0px auto;
+}
+.container .title {
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  text-align: center;
+}
+.container form input[type=submit] {
+  background-color: var(--Horizon);
+  width: 30%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 6px;
+}
+.container form .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  justify-content: space-between;
+  margin: 10px 0 12px 0;
+}
+.container form .user-details .input-box {
+  width: calc(100% / 2 - 20px);
+  margin-bottom: 15px;
+}
+.container form .user-details .input-box input {
+  height: 40px;
+  width: 100%;
+  border-radius: 6px;
+  color: var(--FountainBlue);
+  background: transparent;
+  border: 1px solid var(--FountainBlue);
+  transition: all 0.3s ease;
+  padding-left: 15px;
+  font-size: 15px;
+}
+.container form .user-details .input-box .details {
+  margin-top: 25px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  border-bottom: 5px;
+}
+.container form .row {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+.container form .row a {
+  padding: 10px;
+  color: var(--FountainBlue);
+}
+.container form .row input {
+  margin-right: 0;
+}/*# sourceMappingURL=registernew.css.map */

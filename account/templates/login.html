@@ -2,21 +2,23 @@
 {% load static %}
 {% block title %} Login - Codoner {% endblock title %}
 {% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
-{% endblock stylesheet %}
+        <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
 {% block content %}
-    <form method="POST">
-        {% csrf_token %}
-        {% if error %}
-            <div class="error">
-                {{ error }}
-            </div>
-        {% endif %}
-        {{ form }}
-        <div class="row">
-            <a href="/user/register">New User?</a>
-            <input type="submit" value="Login" />
-        </div>
-    </form>
-{% endblock content %} 
-{% block scripts %} {% endblock scripts %}
+<form method="POST">
+	{% csrf_token %}
+<div class="title">Login</div>
+<div class="input-box">
+	<span class="details">Username</span>
+	{{ form.username }}
+</div>
+<div class="input-box">
+	<span class="details">Password</span>
+	{{ form.password }}
+</div>
+<div class="row">
+	<a href="/user/register">New User?</a>
+	<input type="submit" value="Login">
+</div>
+</form>
+{% endblock %}

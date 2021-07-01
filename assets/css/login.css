@@ -1,0 +1,81 @@
+form {
+  align-self: center;
+  justify-self: center;
+  height: 550px;
+  width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border-radius: 5px;
+  border: 1px solid var(--FountainBlue);
+  padding: 50px;
+  color: var(--Heather);
+  background-color: transparent;
+}
+form .title {
+  font-weight: bold;
+  font-size: 20px;
+  position: relative;
+  text-align: center;
+}
+form .input-box input {
+  height: 40px;
+  width: 100%;
+  border-radius: 6px;
+  color: var(--FountainBlue);
+  background: transparent;
+  border: 1px solid var(--FountainBlue);
+  transition: all 0.3s ease;
+  font-size: 17px;
+  padding: 25px;
+  margin-top: 10px;
+}
+form .input-box .details {
+  margin-top: 25px;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  border-bottom: 5px;
+}
+form label {
+  align-self: flex-start;
+}
+form input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--FountainBlue);
+  font-size: 14px;
+  color: var(--FountainBlue);
+}
+form .error {
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 30px;
+  width: 90%;
+  background-color: #bd0000;
+  color: #c0b4b4;
+}
+form .row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+form .row a {
+  padding: 10px;
+  color: var(--FountainBlue);
+}
+form .row input {
+  margin-right: 0;
+  align-self: flex-end;
+  padding: 13px;
+}
+form .row input[type=submit] {
+  background-color: var(--Horizon);
+  width: 50%;
+  border-radius: 6px;
+  font-weight: bold;
+  color: var(--BlackPearl);
+  font-size: 14px;
+}/*# sourceMappingURL=login.css.map */
