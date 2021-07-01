@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "dashboard.html" %}
 {% load static %}
 {% block title %} Add Question {% endblock %}
 	
@@ -7,13 +7,15 @@
 {% endblock %}
 
 {% block content %}
-	<div class="scrollbox">
+{% include "admin_nav.html" %}
+	<form method="POST" class="scrollbox">
+		{% csrf_token %}
 		<div class="maincontainer">
 			<div class="container">
 				<h2>Question</h2>
 			<div class="block">
 				<span class="label">Title</span>
-				<input type="text" name="" id="" class="txtbox" />
+				<input type="text" name="question_title" class="txtbox" />
 			</div>
 			
 			<div class="block">
@@ -23,8 +25,7 @@
 			<div class="block">
 				<textarea
 					class="txtarea"
-					name=""
-					id=""
+					name="question_desc"
 					rows="10"
 					cols="40"
 				></textarea>
@@ -35,7 +36,7 @@
 			<h2>Test Case 1</h2>
 			<div class="block">
 				<span class="label input-label">Input</span>
-				<input type="text" name="" id="" class="txtbox" />
+				<input type="text" name="test1_input" id="" class="txtbox" />
 			</div>
 			<div class="block">
 				<span class="label">Output</span>
@@ -43,18 +44,17 @@
 			<div class="block">
 				<textarea
 				class="txtarea"
-				name=""
-				id=""
-					rows="10"
-					cols="40"
-					></textarea>
-			</div>
+				name="test1_output"
+				rows="10"
+				cols="40"
+				></textarea>
+		</div>
 		</div>
 		<div class="container">
 			<h2>Test Case 2</h2>
 			<div class="block">
 				<span class="label">Input</span>
-				<input type="text" name="" id="" class="txtbox" />
+				<input type="text" name="test2_input" id="" class="txtbox" />
 			</div>
 			
 			<div class="block">
@@ -64,7 +64,7 @@
 			<div class="block">
 				<textarea
 				class="txtarea"
-				name=""
+				name="test2_output"
 				id=""
 					rows="10"
 					cols="40"
@@ -76,7 +76,7 @@
 			<h2>Test Case 3</h2>
 			<div class="block">
 				<span class="label lable-input">Input</span>
-				<input type="text" name="" id="" class="txtbox" />
+				<input type="text" name="test3_input" id="" class="txtbox" />
 			</div>
 			
 			<div class="block">
@@ -86,8 +86,7 @@
 			<div class="block">
 				<textarea
 					class="txtarea"
-					name=""
-					id=""
+					name="test3_output"
 					rows="10"
 					cols="40"
 					></textarea>
@@ -114,17 +113,17 @@
 			<div class="container"></div>
 		</div>
 		<div class="inputrow">
-			<input type="submit" value="Back" class="submitbtn" />
+			<input type="button" value="Back" class="submitbtn" />
 			<input type="submit" value="Next" class="submitbtn" />
 		</div>
-	</div>
+	</fprm>
 {% endblock %}
 {% block scripts %}
 	<script>
 		const maincontainer = document.getElementsByClassName('maincontainer')[0];
 		const hour = document.getElementById("hour")
 		const hourSpan = document.getElementById("hourSelected")
-        maincontainer.scrollTo(50, 0);
+        maincontainer.scrollTo(75, 0);
 		const submitbtn = document.getElementsByClassName('submitbtn')[1];
 		const backbtn = document.getElementsByClassName('submitbtn')[0];
 		var page = 0;
@@ -142,6 +141,7 @@
 
 		submitbtn.addEventListener('click', function (e) {
 			if (page < 4) {
+				e.preventDefault();
 				maincontainer.scrollBy(300, 0);
 				page++;
 			}

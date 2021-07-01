@@ -39,6 +39,7 @@ input[type='range'] {
 .txtarea {
 	flex: 1;
 	resize: none;
+	padding: 10px;
 	color: var(--Heather);
 }
 .container {
@@ -68,7 +69,6 @@ input[type='range'] {
 }
 .txtbox {
 	flex: 1;
-	padding: 10px;
 }
 h2 {
 	color: var(--FountainBlue);
@@ -80,6 +80,7 @@ textarea {
 	color: var(--Heather);
 	border: 1px solid var(--FountainBlue);
 	border-radius: 5px;
+	padding: 10px;
 }
 .inputrow {
 	width: 30%;

@@ -1,7 +1,8 @@
 from django.urls import path
-from .views import index, execute
+from .views import index, playground, execute
 
 urlpatterns = [
-    path('playground/<id>', index),
+    path('', index),
+    path('playground/<id>', playground),
     path('execute/', execute),
 ]

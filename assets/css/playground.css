@@ -41,7 +41,7 @@
   padding: 10px 0px;
   border: 1px solid var(--Heather);
   margin: 5px;
-  min-width: 100px;
+  min-width: 125px;
   border-radius: 5px;
   margin-left: 15px;
   background-color: inherit;
@@ -50,15 +50,24 @@
      -moz-appearance: none;
           appearance: none;
 }
+.playarea .main form option {
+  background-color: var(--BlackPearl);
+  color: white;
+  padding: 10px 0px;
+}
 .playarea .main form input {
   padding: 10px 20px;
   background-color: #71a6b1;
   font-size: 15px;
   margin-right: 7.5px;
 }
+.playarea .main form input:disabled {
+  background: gray;
+}
 .playarea .main textarea {
   flex: 1;
   padding: 10px;
+  resize: none;
   border: 1px solid transparent;
   border-bottom: 1px solid var(--Heather);
   font-family: Consolas, "Courier New", monospace;

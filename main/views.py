@@ -2,26 +2,36 @@ import os
 import subprocess
 
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import HttpResponse, render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from .models import Question, TestCase
 
 
-def index(request, id):
-    question = Question.objects.get(id=id)
-    testcase = TestCase.objects.filter(question=question).first()
+@login_required(login_url='/user/login/')
+def index(request):
+    questions = Question.objects.all()
+    context = {
+        'questions': questions
+    }
+    return render(request, 'index.html', context=context)
+
+
+@login_required(login_url='/user/login/')
+def playground(request, id):
+    question = get_object_or_404(Question, id=id)
+    testcase = TestCase.objects.filter(question=question)
     context = {
         'question': question,
-        'testcase': testcase
+        'testcase': testcase[0],
+        'totalTestCases': len(testcase)
     }
     return render(request, 'playground.html', context=context)
 
 
-def c_execute(question_id: int, filename: str):
+def c_execute(question_id: int, test_id: int, filename: str):
     question = Question.objects.filter(id=question_id).first()
-    testcases = TestCase.objects.filter(question=question)
-    results = []
-    flag = True
+    testcase = TestCase.objects.filter(question=question)[test_id]
     output_file = filename.replace('.c', '.out')
     comp = subprocess.run(['gcc', filename, '-o', output_file],
                           stderr=subprocess.PIPE, text=True)
@@ -30,40 +40,34 @@ def c_execute(question_id: int, filename: str):
             'passed': False,
             'error': comp.stderr
         }
-        flag = False
-        results = [result for i in range(len(testcases))]
-        return results, flag
-    for testcase in testcases:
-        result = {'passed': True}
-        code = subprocess.Popen(['./' + output_file], stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        try:
-            output, error = code.communicate(
-                input=testcase.input, timeout=5)
-            output = '\r\n'.join(output.splitlines(keepends=False))
-            if output != testcase.output:
-                result['passed'] = False
-                flag = False
-                result['error'] = output
-        except subprocess.TimeoutExpired:
+        return result
+    result = {'passed': True}
+    code = subprocess.Popen(['./' + output_file], stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    try:
+        output, error = code.communicate(input=testcase.input, timeout=2)
+        output = '\r\n'.join(output.splitlines(keepends=False))
+        if output != testcase.output:
             result['passed'] = False
-            flag = False
-            result['error'] = error
-        results.append(result)
+            if error:
+                result['error'] = error
+            else:
+                result['error'] = output
+    except subprocess.TimeoutExpired:
+        result['passed'] = False
+        result['error'] = 'Code execution timed out'
     os.remove(output_file)
-    return results, flag
+    return result
 
 
-def java_execute(question_id: int, filename: str):
+def java_execute(question_id: int, test_id: int, filename: str):
     # TODO: Fix Class thingy. Not usable right now.
     code_snippet = f'public class {filename.replace(".java", "")} {{{open(filename, "r").read()}}}'
     open(filename, 'w').write(code_snippet)
     output_file = filename.replace('.java', '')
 
     question = Question.objects.filter(id=question_id).first()
-    testcases = TestCase.objects.filter(question=question)
-    results = []
-    flag = True
+    testcase = TestCase.objects.filter(question=question)[test_id]
     comp = subprocess.run(['javac', filename],
                           stderr=subprocess.PIPE, text=True)
     if comp.stderr:
@@ -71,68 +75,57 @@ def java_execute(question_id: int, filename: str):
             'passed': False,
             'error': comp.stderr
         }
-        flag = False
-        results = [result for i in range(len(testcases))]
-        return results, flag
-    for testcase in testcases:
-        result = {'passed': True}
-        code = subprocess.Popen(['java',  output_file], stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        try:
-            output, error = code.communicate(
-                input=testcase.input, timeout=5)
-            output = '\r\n'.join(output.splitlines(keepends=False))
-            if output != testcase.output:
-                result['passed'] = False
-                flag = False
-                result['error'] = output
-        except subprocess.TimeoutExpired:
+        return result
+    result = {'passed': True}
+    code = subprocess.Popen(['java',  output_file], stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    try:
+        output, error = code.communicate(
+            input=testcase.input, timeout=2)
+        output = '\r\n'.join(output.splitlines(keepends=False))
+        if output != testcase.output:
             result['passed'] = False
-            flag = False
-            result['error'] = error
-        results.append(result)
+            result['error'] = output
+    except subprocess.TimeoutExpired:
+        result['passed'] = False
+        result['error'] = 'Code execution timed out'
     os.remove(output_file + '.class')
-    return results, flag
+    return result
 
 
-def python_execute(question_id: int, filename: str):
+def python_execute(question_id: int, test_id: int, filename: str):
     question = Question.objects.filter(id=question_id).first()
-    testcases = TestCase.objects.filter(question=question)
-    results = []
-    flag = True
-    for testcase in testcases:
-        code = subprocess.Popen(['python3', filename], stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        result = {'passed': True}
-        try:
-            output, error = code.communicate(input=testcase.input, timeout=5)
-            output = '\r\n'.join(output.splitlines(keepends=False))
-            if output != testcase.output:
-                result['passed'] = False
-                flag = False
-                result['error'] = output
-        except subprocess.TimeoutExpired:
+    testcase = TestCase.objects.filter(question=question)[test_id]
+    code = subprocess.Popen(['python3', filename], stdin=subprocess.PIPE,
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    result = {'passed': True}
+    try:
+        output, error = code.communicate(input=testcase.input, timeout=2)
+        output = '\r\n'.join(output.splitlines(keepends=False))
+        if output != testcase.output:
             result['passed'] = False
-            flag = False
-            result['error'] = error
-        results.append(result)
-    return results, flag
+            if error:
+                result['error'] = error
+            else:
+                result['error'] = output
+    except subprocess.TimeoutExpired:
+        result['passed'] = False
+        result['error'] = 'Code execution timed out'
+    return result
 
 
 def execute(request):
     if request.method == 'POST':
         lang = request.POST['language']
         question_id = request.POST['id']
-        filename = 'somethingwirld.' + lang
+        test_id = int(request.POST['currentCase'])
+        filename = request.user.username + '.' + lang
         open(filename, 'w').write(request.POST['code'])
         if lang == 'py':
-            results, flag = python_execute(question_id, filename)
+            result = python_execute(question_id, test_id, filename)
         elif lang == 'c':
-            results, flag = c_execute(question_id, filename)
+            result = c_execute(question_id, test_id, filename)
         elif lang == 'java':
-            results, flag = java_execute(question_id, filename)
+            result = java_execute(question_id, test_id, filename)
         os.remove(filename)
-        return JsonResponse({
-            'success': flag,
-            'output': results,
-        })
+        return JsonResponse(result)

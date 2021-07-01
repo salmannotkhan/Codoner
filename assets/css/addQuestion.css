@@ -42,6 +42,7 @@ input[type=range]::-moz-range-thumb {
 .txtarea {
   flex: 1;
   resize: none;
+  padding: 10px;
   color: var(--Heather);
 }
 
@@ -77,7 +78,6 @@ input[type=range]::-moz-range-thumb {
 
 .txtbox {
   flex: 1;
-  padding: 10px;
 }
 
 h2 {
@@ -91,6 +91,7 @@ textarea {
   color: var(--Heather);
   border: 1px solid var(--FountainBlue);
   border-radius: 5px;
+  padding: 10px;
 }
 
 .inputrow {

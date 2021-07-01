@@ -1,0 +1,17 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 20px;
+}
+.menu a {
+  padding: 50px;
+  font-size: x-large;
+  width: 80%;
+  transition: box-shadow 0.5s ease;
+}
+.menu a:hover {
+  box-shadow: 3px 3px 10px black;
+}/*# sourceMappingURL=questionsMenu.css.map */

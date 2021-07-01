@@ -46,7 +46,7 @@ a:hover {
 
 header {
   display: flex;
-  min-height: 10%;
+  min-height: 5%;
   align-items: center;
   justify-content: space-between;
   padding: 20px;

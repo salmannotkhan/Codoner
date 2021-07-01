@@ -1,32 +1,55 @@
+const terminal = document.querySelector('.terminal .output');
+const totalTestCases = document.getElementById('totalTestCases').value;
+const form = document.getElementsByTagName('form')[0];
+const currentCase = document.getElementById('currentCase');
+const codeConsole = document.querySelector('textarea');
+const runBtn = document.getElementById('run');
+const xhr = new XMLHttpRequest();
+var totalPassed = 0;
+xhr.responseType = 'json';
+
+xhr.onreadystatechange = () => {
+	if (xhr.readyState == 4) {
+		card = document.createElement('div');
+		card.classList.add('result');
+		card.innerHTML = `Test Case ${parseInt(currentCase.value) + 1}: `;
+		res = xhr.response;
+		if (res.passed) {
+			card.classList.add('success');
+			card.innerHTML += 'Passed';
+			totalPassed++;
+		} else {
+			card.classList.add('failed');
+			card.innerHTML += `Failed: ${res.error}`;
+		}
+		terminal.appendChild(card);
+		currentCase.value = parseInt(currentCase.value) + 1;
+		if (parseInt(currentCase.value) < totalTestCases) {
+			formdata = new FormData(form);
+			xhr.open('POST', '/code/execute/');
+			xhr.send(formdata);
+			runBtn.value = `${runBtn.value}.`;
+		} else {
+			runBtn.disabled = false;
+			runBtn.value = 'Run';
+			if (totalPassed == totalTestCases) {
+				alert('Miracle!');
+			}
+		}
+	}
+};
+
 function sendreq() {
-	formdata = new FormData(document.querySelector('form'));
-	const terminal = document.querySelector('.terminal .output');
-	const xhr = new XMLHttpRequest();
-	xhr.responseType = 'json';
+	currentCase.value = 0;
+	runBtn.disabled = true;
+	runBtn.value = 'Running.';
+	totalPassed = 0;
+	formdata = new FormData(form);
 	xhr.open('POST', '/code/execute/');
 	xhr.send(formdata);
-	xhr.onload = () => {
-		console.log(xhr);
-		terminal.innerHTML = '';
-		res = xhr.response;
-		let count = 1;
-		res.output.forEach((result) => {
-			card = document.createElement('div');
-			card.classList.add('result');
-			card.innerHTML = `Test Case ${count}: `;
-			if (result.passed) {
-				card.classList.add('success');
-				card.innerHTML += 'Passed';
-			} else {
-				card.classList.add('failed');
-				card.innerHTML += `Failed: ${result.error}`;
-			}
-			terminal.appendChild(card);
-			count++;
-		});
-	};
+	terminal.innerHTML = '';
 }
-const codeConsole = document.querySelector('textarea');
+
 codeConsole.addEventListener('keydown', (e) => {
 	if (e.keyCode == 9) {
 		var index = codeConsole.selectionStart;

@@ -31,6 +31,8 @@ n = input()</pre>
         <div class="main">
             <form>
                 {% csrf_token %}
+                <input type="hidden" id="totalTestCases" name="totalcases" value="{{totalTestCases}}">
+                <input type="hidden" id="currentCase" name="currentCase" value="0">
                 <input type="hidden" name="id" value="{{question.id}}">
                 <div class="code_head head">
                 <h3 class="title">Code</h3>
@@ -51,8 +53,8 @@ n = input()</pre>
                             <option value="java">Java</option>
                         </select>
                         <input type="button" value="Submit">
-                        <input type="button" onclick="sendreq()" value="Run">
-                        <input type="button" value="Reset">
+                        <input type="button" id="run" onclick="sendreq()" value="Run">
+                        <input type="reset">
                     </div>
                 </div>
                 <textarea name="code" spellcheck="false"></textarea>

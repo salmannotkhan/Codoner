@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Codoner - Menu{% endblock %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/questionsMenu.css' %}">
+{% endblock %}
+{% block content %}
+<div class="menu">
+    {% for question in questions %}
+        <a href="/code/playground/{{question.id}}">{{forloop.counter}}. {{question.title}}</a><br>
+    {% empty %}
+        <div>No Questions available for you.</div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        const fontsizeselector = document.getElementById("font");
+        const textareaselector = document.getElementsByTagName("textarea")[0];
+        fontsizeselector.addEventListener("click", function (e) {
+            textareaselector.style.fontSize = fontsizeselector.value
+        })
+    </script>
+    <script src="{% static 'js/codeExecution.js' %}"></script>
+{% endblock %}

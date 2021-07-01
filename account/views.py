@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from main.models import Question, TestCase
 
@@ -13,9 +14,9 @@ def login_view(request):
         if user:
             login(request, user=user)
             if user.is_staff:
-                return redirect('/user/')
+                return redirect(request.GET.get('next', '/user'))
             else:
-                return redirect('/code/playground')
+                return redirect(request.GET.get('next', '/code'))
         error = 'Username or password incorrect'
     return render(request, 'login.html', context={'form': form, 'error': error})
 
@@ -27,10 +28,15 @@ def logout_view(request):
 
 def signup_view(request):
     form = UserCreationForm(request.POST or None)
-    error = None
-    return render(request, 'register.html', context={'form': form, 'error': error})
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/user/login/')
+    return render(request, 'register.html', context={'form': form})
 
 
+@login_required(login_url='/user/login')
 def dashboard_view(request):
     return render(request, 'dashboard.html')
 
