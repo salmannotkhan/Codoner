@@ -9,7 +9,6 @@
 
 html,
 body {
-  font-size: 20px;
   height: 100%;
   --BlackPearl: #182025;
   --FountainBlue: #71a6b1;
@@ -52,9 +51,6 @@ header {
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid var(--Heather);
-}
-header .profile {
-  font-size: 16px;
 }
 header a {
   padding: 10px 20px;

@@ -2,6 +2,6 @@ from django.urls import path
 from .views import index, execute
 
 urlpatterns = [
-    path('playground/', index),
+    path('playground/<id>', index),
     path('execute/', execute),
 ]

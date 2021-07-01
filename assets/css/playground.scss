@@ -3,9 +3,28 @@
 	height: 100%;
 	flex: 1;
 	.questionarea {
+		display: flex;
+		flex-direction: column;
 		border-right: 1px solid var(--Heather);
 		background-color: var(--BlackPearl);
 		min-width: 40%;
+		& > *:not(.head) {
+			padding: 20px;
+		}
+		pre {
+			font-family: 'Courier New', Courier, monospace;
+			border: 1px solid gray;
+			padding: 10px;
+			margin: 20px 0px;
+			width: 100%;
+			text-align: left;
+		}
+		.language-tips {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			justify-content: flex-end;
+		}
 	}
 	.main {
 		flex: 1;
@@ -53,8 +72,20 @@
 	min-height: 30%;
 	background-color: var(--BlackPearl);
 	.output {
-		padding: 10px;
 		flex: 1;
 		background-color: var(--BlackPearl);
+		overflow-y: scroll;
+		.result {
+			font-family: 'Courier New', Courier, monospace;
+			box-shadow: 3px 3px 10px black;
+			padding: 5px;
+			margin: 10px;
+			&.success {
+				color: green;
+			}
+			&.failed {
+				color: red;
+			}
+		}
 	}
 }

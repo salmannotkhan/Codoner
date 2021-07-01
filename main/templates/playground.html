@@ -9,13 +9,29 @@
         <div class="questionarea">
             <div class="head">
                 <h3>
-                    Question 1
+                    {{question.title}}
                 </h3>
             </div>
-        </div>
+            <div class="description">
+                {{question.description}}
+            </div>
+            <div class="case">
+                Input:
+                <pre>{{testcase.input}}</pre>
+                Output:
+                <pre>{{testcase.output}}</pre>
+            </div>
+            <div class="language-tips">
+                Tips:
+                <pre># Input
+# Unnecessary print statments or formatting will lead test cases to fail
+n = input()</pre>
+            </div>
+         </div>
         <div class="main">
             <form>
                 {% csrf_token %}
+                <input type="hidden" name="id" value="{{question.id}}">
                 <div class="code_head head">
                 <h3 class="title">Code</h3>
                     <div>

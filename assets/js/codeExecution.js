@@ -7,18 +7,23 @@ function sendreq() {
 	xhr.send(formdata);
 	xhr.onload = () => {
 		console.log(xhr);
+		terminal.innerHTML = '';
 		res = xhr.response;
-		if (res.error) {
-			terminal.classList.add('error');
-			terminal.innerText = res.details;
-		} else {
-			terminal.classList.add('success');
-			terminal.classList.remove('error');
-			htmlOutput = res.output.replaceAll(' ', '&nbsp;');
-			htmlOutput = htmlOutput.replaceAll('\n', '<br>');
-			console.log(htmlOutput);
-			terminal.innerHTML = htmlOutput;
-		}
+		let count = 1;
+		res.output.forEach((result) => {
+			card = document.createElement('div');
+			card.classList.add('result');
+			card.innerHTML = `Test Case ${count}: `;
+			if (result.passed) {
+				card.classList.add('success');
+				card.innerHTML += 'Passed';
+			} else {
+				card.classList.add('failed');
+				card.innerHTML += `Failed: ${result.error}`;
+			}
+			terminal.appendChild(card);
+			count++;
+		});
 	};
 }
 const codeConsole = document.querySelector('textarea');

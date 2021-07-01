@@ -7,8 +7,14 @@ from django.shortcuts import HttpResponse, render
 from .models import Question, TestCase
 
 
-def index(request):
-    return render(request, 'playground.html')
+def index(request, id):
+    question = Question.objects.get(id=id)
+    testcase = TestCase.objects.filter(question=question).first()
+    context = {
+        'question': question,
+        'testcase': testcase
+    }
+    return render(request, 'playground.html', context=context)
 
 
 def c_execute(question_id: int, filename: str):
@@ -116,7 +122,7 @@ def python_execute(question_id: int, filename: str):
 def execute(request):
     if request.method == 'POST':
         lang = request.POST['language']
-        question_id = 1
+        question_id = request.POST['id']
         filename = 'somethingwirld.' + lang
         open(filename, 'w').write(request.POST['code'])
         if lang == 'py':
