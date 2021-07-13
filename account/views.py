@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from .forms import UserForm
-from main.models import Question, TestCase
+from .models import Details
+from main.models import Competition, Question, TestCase
 
 
 def login_view(request):
@@ -19,7 +20,7 @@ def login_view(request):
                 return redirect(request.GET.get('next', '/user'))
             else:
                 return redirect(request.GET.get('next', '/code'))
-        error = 'Username or password incorrect'
+        error = 'Invalid username/password'
     return render(request, 'login.html', context={'form': form, 'error': error})
 
 
@@ -30,23 +31,50 @@ def logout_view(request):
 
 def signup_view(request):
     form = UserForm()
-    print(form.fields)
+    competitions = Competition.objects.all()
     if request.method == 'POST':
         form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
+        competition_name = request.POST.get('competition', False)
+        if form.is_valid() and competition_name:
+            user = form.save()
+            details = Details(
+                id=user, competition_name=request.POST.get('competition'))
+            details.save()
             return redirect('/user/login/')
-        else:
-            print(form.errors)
-    return render(request, 'registernew.html', context={'form': form})
+    return render(request, 'register.html', context={'form': form, 'competitions': competitions})
 
 
-@ login_required(login_url='/user/login')
+@login_required(login_url='/user/login')
 def dashboard_view(request):
-    return render(request, 'dashboard.html')
+    competitions = Competition.objects.filter(creator=request.user)
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        if title is not '' and description is not '':
+            competition = Competition(
+                title=title, description=description, creator=request.user)
+            competition.save()
+    return render(request, 'dashboard.html', context={'competitions': competitions})
+
+
+@login_required(login_url='/user/login')
+def competition_view(request, id):
+    competition = Competition.objects.filter(id=id).first()
+    if request.user != competition.creator:
+        return redirect('/user/')
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        if title is not '' and description is not '':
+            competition = Competition(
+                title=title, description=description, creator=request.user)
+            competition.save()
+    return render(request, 'competition.html', context={'competition': competition})
 
 
 def add_view(request):
+    competitions = Competition.objects.filter(creator=request.user)
     if request.method == "POST":
         question_title = request.POST.get('question_title')
         question_desc = request.POST.get('question_desc')
@@ -71,4 +99,4 @@ def add_view(request):
                             output=test3_output, question=question)
         testcase.save()
 
-    return render(request, 'add_question.html')
+    return render(request, 'add_question.html', context={'competitions': competitions})

@@ -5,12 +5,15 @@ from django.http import JsonResponse
 from django.shortcuts import HttpResponse, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
-from .models import Question, TestCase
+from .models import Competition, Question, TestCase
 
 
 @login_required(login_url='/user/login/')
 def index(request):
-    questions = Question.objects.all()
+    competition = Competition.objects.filter(
+        title=request.user.details.competition_name).first()
+    questions = Question.objects.filter(
+        competition=competition)
     context = {
         'questions': questions
     }

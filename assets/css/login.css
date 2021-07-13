@@ -15,14 +15,13 @@ form {
 }
 form .title {
   font-weight: bold;
-  font-size: 20px;
   position: relative;
   text-align: center;
 }
 form .input-box input {
   height: 40px;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 5px;
   color: var(--FountainBlue);
   background: transparent;
   border: 1px solid var(--FountainBlue);
@@ -52,9 +51,8 @@ form .error {
   border-radius: 5px;
   padding: 15px;
   margin-bottom: 30px;
-  width: 90%;
-  background-color: #bd0000;
-  color: #c0b4b4;
+  width: 100%;
+  background-color: #e60000;
 }
 form .row {
   display: flex;
@@ -76,6 +74,6 @@ form .row input[type=submit] {
   width: 50%;
   border-radius: 6px;
   font-weight: bold;
-  color: var(--BlackPearl);
+  color: white;
   font-size: 14px;
 }/*# sourceMappingURL=login.css.map */

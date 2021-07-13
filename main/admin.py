@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Question, TestCase
+from .models import Competition, Question, TestCase
 
-# Register your models here.
+admin.site.register(Competition)
 admin.site.register(Question)
 admin.site.register(TestCase)

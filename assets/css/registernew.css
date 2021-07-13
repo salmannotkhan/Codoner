@@ -1,7 +1,7 @@
 .container {
   max-width: 650px;
   background-color: var(--BlackPearl);
-  padding: 50px;
+  padding: 40px;
   color: var(--Heather);
   border: 1px solid var(--FountainBlue);
   border-radius: 5px;
@@ -15,11 +15,24 @@
 }
 .container form input[type=submit] {
   background-color: var(--Horizon);
+  border: 1px solid var(--FountainBlue);
   width: 30%;
   height: 40px;
   font-weight: bold;
   font-size: 14px;
-  border-radius: 6px;
+  border-radius: 5px;
+}
+.container form ul {
+  list-style-type: none;
+  border-radius: 5px;
+  background-color: var(--Horizon);
+}
+.container form ul li {
+  padding: 5px;
+  margin: 5px;
+}
+.container form ul.errorlist {
+  background-color: #e60000;
 }
 .container form .user-details {
   display: flex;
@@ -32,10 +45,12 @@
   width: calc(100% / 2 - 20px);
   margin-bottom: 15px;
 }
-.container form .user-details .input-box input {
+.container form .user-details .input-box input,
+.container form .user-details .input-box select,
+.container form .user-details .input-box option {
   height: 40px;
   width: 100%;
-  border-radius: 6px;
+  border-radius: 5px;
   color: var(--FountainBlue);
   background: transparent;
   border: 1px solid var(--FountainBlue);

@@ -7,7 +7,7 @@
 {% block content %}
 <form method="POST">
 	{% csrf_token %}
-<div class="title">Login</div>
+<h2 class="title">Login</h2>
 <div class="input-box">
 	<span class="details">Username</span>
 	{{ form.username }}
@@ -16,6 +16,11 @@
 	<span class="details">Password</span>
 	{{ form.password }}
 </div>
+{% if error %}
+<div class="error">
+	{{error}}
+</div>
+{% endif %}
 <div class="row">
 	<a href="/user/register">New User?</a>
 	<input type="submit" value="Login">

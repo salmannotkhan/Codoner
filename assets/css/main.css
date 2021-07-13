@@ -30,9 +30,6 @@ body {
   justify-content: space-around;
   align-items: center;
 }
-.content .welcome h1 {
-  height: 40%;
-}
 
 a {
   color: var(--font-color);
@@ -50,7 +47,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  border-bottom: 1px solid var(--Heather);
+  border-bottom: 1px solid var(--FountainBlue);
 }
 header a {
   padding: 10px 20px;
@@ -107,4 +104,33 @@ header a {
 .head h3 {
   flex: 1;
   padding: 15px;
+}
+
+input,
+select,
+option,
+button {
+  height: 40px;
+  width: 100%;
+}
+
+input,
+select,
+option,
+button,
+textarea {
+  border-radius: 5px;
+  color: var(--FountainBlue);
+  background: transparent;
+  border: 1px solid var(--FountainBlue);
+  transition: all 0.3s ease;
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+button:hover,
+input[type=button]:hover,
+input[type=submit]:hover {
+  background: var(--Heather);
+  color: var(--BlackPearl);
 }/*# sourceMappingURL=main.css.map */

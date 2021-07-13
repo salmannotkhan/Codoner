@@ -1,22 +1,64 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} Login - Codoner {% endblock title %}
+{% block title %} Registration - Codoner {% endblock title %}
 {% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'css/auth.css' %}" />
-{% endblock stylesheet %}
+        <link rel="stylesheet" href="{% static 'css/registernew.css' %}">
+{% endblock %}
 {% block content %}
+<div class = "container">
+    <div class = "title">Registration</div>
     <form method="POST">
         {% csrf_token %}
-        {% if error %}
-            <div class="error">
-                {{ error }}
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">First Name</span>
+                {{ form.first_name }}
+                {{ form.errors.first_name }}
             </div>
-        {% endif %}
-        {{ form }}
-        <div class="row">
-            <a href="/user/register">Already User?</a>
-            <input type="submit" value="Signup" />
+            <div class="input-box">
+                <span class="details">Last Name</span>
+                {{ form.last_name }}
+                {{ form.errors.last_name }}
+            </div>
+            <div class="input-box">
+                <span class="details">Email</span>
+                {{ form.email }}
+                {{ form.errors.email }}         
+            </div>
+            <div class="input-box">
+                <span class="details">Username</span>
+                {{ form.username }}
+                {{ form.errors.username }}
+                <ul>
+                    <li>
+                        {{ form.username.help_text }}
+                    </li>
+                </ul>
+            </div>
+            <div class="input-box">
+                <span class="details">Password</span>
+                {{ form.password1 }}
+                {{ form.errors.password1 }}
+                {{ form.password1.help_text }}
+            </div>
+            <div class="input-box">
+                <span class="details">Password Confirmation</span>
+                {{ form.password2 }}
+                {{ form.errors.password2 }}
+            </div>
+            <div class="input-box">
+                <span class="details">Competition name</span>
+                <select name="competition">
+                    {% for competition in competitions %}
+                        <option value="{{competition.title}}">{{competition.title}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="row">
+                <a href="/user/login">Alread have an Account?</a>
+                <input type="submit" value="Signup">
+            </div>
         </div>
     </form>
-{% endblock content %} 
-{% block scripts %} {% endblock scripts %}
+</div>
+{% endblock %}
