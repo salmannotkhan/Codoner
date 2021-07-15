@@ -8,10 +8,18 @@
 		<title>{% block title %} {% endblock title %}</title>
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
 		{% block stylesheet %} {% endblock stylesheet %}
+		<script>
+			function darkMode() {
+				dark = document.body.classList.toggle('dark')
+				localStorage.setItem("darkMode", dark)
+				darkBtn.innerText = dark ? "Dark Mode" : "Light Mode"
+			}
+		</script>
 	</head>
 	<body>
 		<header>
 			<h2 id="logo">Codoner
+				<button id="darkBtn" class="darkmode" onclick="darkMode()">Dark Mode</button>
 			</h2>
 			{% if request.user.is_staff %}
 				<h3>
@@ -31,5 +39,10 @@
 			{% block content %} {% endblock content %} 
 		</div>
         {% block scripts %} {% endblock scripts %}
+		<script>
+			if (localStorage.getItem("darkMode") === "true") {
+				darkMode()
+			}
+		</script>
 	</body>
 </html>

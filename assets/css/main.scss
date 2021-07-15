@@ -5,7 +5,7 @@
   padding: 0;
   font-family: "Comfortaa", cursive;
   box-sizing: border-box;
-  color: white;
+  color: var(--font-color);
 }
 
 html,
@@ -15,7 +15,15 @@ body {
   --FountainBlue: #71a6b1;
   --Heather: #b8c2c6;
   --Horizon: #608b95;
+  --font-color: white;
   background-color: var(--BlackPearl);
+}
+body.dark {
+  --BlackPearl: white;
+  --FountainBlue: #71a6b1;
+  --Heather: #b8c2c6;
+  --Horizon: #608b95;
+  --font-color: black;
 }
 
 .content {
@@ -48,6 +56,15 @@ header {
   justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid var(--FountainBlue);
+  h2 {
+    display: flex;
+    align-items: center;
+    button {
+      margin-left: 10px;
+      padding: 10px;
+      width: max-content;
+    }
+  }
   a {
     padding: 10px 20px;
     color: rgb(255, 255, 255);
