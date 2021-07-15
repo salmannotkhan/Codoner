@@ -1,41 +1,73 @@
 .playarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 100%;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
+
 .playarea .questionarea {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border-right: 1px solid var(--Heather);
   background-color: var(--BlackPearl);
   min-width: 40%;
 }
+
 .playarea .questionarea > *:not(.head) {
   padding: 20px;
 }
+
 .playarea .questionarea pre {
-  font-family: "Courier New", Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   border: 1px solid gray;
   padding: 10px;
   margin: 20px 0px;
   width: 100%;
   text-align: left;
 }
+
 .playarea .questionarea .language-tips {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
+
 .playarea .main {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
+
 .playarea .main form {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   min-height: 70%;
   background-color: var(--BlackPearl);
 }
+
 .playarea .main form input,
 .playarea .main form select {
   padding: 10px 0px;
@@ -50,53 +82,73 @@
      -moz-appearance: none;
           appearance: none;
 }
+
 .playarea .main form option {
   background-color: var(--BlackPearl);
   color: white;
   padding: 10px 0px;
 }
+
 .playarea .main form input {
   padding: 10px 20px;
   background-color: #71a6b1;
   font-size: 15px;
   margin-right: 7.5px;
 }
+
 .playarea .main form input:disabled {
   background: gray;
 }
+
 .playarea .main textarea {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding: 10px;
   resize: none;
   border: 1px solid transparent;
   border-bottom: 1px solid var(--Heather);
-  font-family: Consolas, "Courier New", monospace;
+  font-family: Consolas, 'Courier New', monospace;
   background-color: var(--BlackPearl);
 }
+
 .playarea .main textarea:focus {
   outline: none;
 }
 
 .terminal {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   min-height: 30%;
   background-color: var(--BlackPearl);
 }
+
 .terminal .output {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   background-color: var(--BlackPearl);
   overflow-y: scroll;
 }
+
 .terminal .output .result {
-  font-family: "Courier New", Courier, monospace;
-  box-shadow: 3px 3px 10px black;
+  font-family: 'Courier New', Courier, monospace;
+  -webkit-box-shadow: 3px 3px 10px black;
+          box-shadow: 3px 3px 10px black;
   padding: 5px;
   margin: 10px;
 }
+
 .terminal .output .result.success {
   color: green;
 }
+
 .terminal .output .result.failed {
   color: red;
-}/*# sourceMappingURL=playground.css.map */
+}
+/*# sourceMappingURL=playground.css.map */

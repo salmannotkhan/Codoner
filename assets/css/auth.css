@@ -1,16 +1,26 @@
 form {
   margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   border-radius: 5px;
   width: 15%;
   padding: 35px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: var(--bg-color);
 }
+
 form label {
-  align-self: flex-start;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
 }
+
 form input {
   width: 90%;
   border-radius: 5px;
@@ -20,10 +30,12 @@ form input {
   color: var(--font-color);
   border: 1px solid var(--border-color);
 }
-form input[type=submit] {
+
+form input[type='submit'] {
   background-color: #1c5263;
   width: 50%;
 }
+
 form .error {
   border-radius: 5px;
   padding: 15px;
@@ -32,15 +44,25 @@ form .error {
   background-color: #bd0000;
   color: #c0b4b4;
 }
+
 form .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 90%;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 form .row a {
   padding: 10px;
 }
+
 form .row input {
   margin-right: 0;
-}/*# sourceMappingURL=auth.css.map */
+}
+/*# sourceMappingURL=auth.css.map */

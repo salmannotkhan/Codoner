@@ -7,13 +7,15 @@
   border-radius: 5px;
   margin: 0px auto;
 }
+
 .container .title {
   font-weight: bold;
   font-size: 20px;
   position: relative;
   text-align: center;
 }
-.container form input[type=submit] {
+
+.container form input[type='submit'] {
   background-color: var(--Horizon);
   border: 1px solid var(--FountainBlue);
   width: 30%;
@@ -22,29 +24,40 @@
   font-size: 14px;
   border-radius: 5px;
 }
+
 .container form ul {
   list-style-type: none;
   border-radius: 5px;
   background-color: var(--Horizon);
 }
+
 .container form ul li {
   padding: 5px;
   margin: 5px;
 }
+
 .container form ul.errorlist {
   background-color: #e60000;
 }
+
 .container form .user-details {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   font-size: 14px;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin: 10px 0 12px 0;
 }
+
 .container form .user-details .input-box {
   width: calc(100% / 2 - 20px);
   margin-bottom: 15px;
 }
+
 .container form .user-details .input-box input,
 .container form .user-details .input-box select,
 .container form .user-details .input-box option {
@@ -54,10 +67,12 @@
   color: var(--FountainBlue);
   background: transparent;
   border: 1px solid var(--FountainBlue);
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   padding-left: 15px;
   font-size: 15px;
 }
+
 .container form .user-details .input-box .details {
   margin-top: 25px;
   display: block;
@@ -65,17 +80,27 @@
   margin-bottom: 5px;
   border-bottom: 5px;
 }
+
 .container form .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 90%;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 20px;
 }
+
 .container form .row a {
   padding: 10px;
   color: var(--FountainBlue);
 }
+
 .container form .row input {
   margin-right: 0;
-}/*# sourceMappingURL=registernew.css.map */
+}
+/*# sourceMappingURL=registernew.css.map */

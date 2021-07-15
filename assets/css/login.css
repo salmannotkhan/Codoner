@@ -1,23 +1,32 @@
 form {
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   justify-self: center;
   height: 550px;
   width: 450px;
   margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   border-radius: 5px;
   border: 1px solid var(--FountainBlue);
   padding: 50px;
   color: var(--Heather);
   background-color: transparent;
 }
+
 form .title {
   font-weight: bold;
   position: relative;
   text-align: center;
 }
+
 form .input-box input {
   height: 40px;
   width: 100%;
@@ -25,11 +34,13 @@ form .input-box input {
   color: var(--FountainBlue);
   background: transparent;
   border: 1px solid var(--FountainBlue);
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   font-size: 17px;
   padding: 25px;
   margin-top: 10px;
 }
+
 form .input-box .details {
   margin-top: 25px;
   display: block;
@@ -37,9 +48,12 @@ form .input-box .details {
   margin-bottom: 5px;
   border-bottom: 5px;
 }
+
 form label {
-  align-self: flex-start;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
 }
+
 form input {
   width: 100%;
   border-radius: 8px;
@@ -47,6 +61,7 @@ form input {
   font-size: 14px;
   color: var(--FountainBlue);
 }
+
 form .error {
   border-radius: 5px;
   padding: 15px;
@@ -54,26 +69,38 @@ form .error {
   width: 100%;
   background-color: #e60000;
 }
+
 form .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 form .row a {
   padding: 10px;
   color: var(--FountainBlue);
 }
+
 form .row input {
   margin-right: 0;
-  align-self: flex-end;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
   padding: 13px;
 }
-form .row input[type=submit] {
+
+form .row input[type='submit'] {
   background-color: var(--Horizon);
   width: 50%;
   border-radius: 6px;
   font-weight: bold;
   color: white;
   font-size: 14px;
-}/*# sourceMappingURL=login.css.map */
+}
+/*# sourceMappingURL=login.css.map */

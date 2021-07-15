@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/question.css' %}">
 <script>
@@ -12,34 +13,46 @@
     }
 </script>
 {% endblock %}
+
 {% block content %}
     <div class="question">
         <div class="question-title">
-            {{competition.title}}
-            <button onclick="showAddForm()">Add Question</button>
+            {{question.title}}
+            <button onclick="showAddForm()">Add Tese Case</button>
         </div>
         <div class="question-description">
-            {{competition.description}}
+            {{question.description}}
         </div>
         <div class="testcases">
-            {% for question in questions %}
+            {% for testcase in testcases %}
             <div class="testcase">
-                <a href="/user/question/{{question.id}}/">Question {{forloop.counter}}. {{question.title}}</a>
+                <div class="test-head"><b>Test Case {{forloop.counter}}</b></div>
+                <div class="input">
+                    Input:
+                    <pre>{{testcase.input}}</pre>
+                </div>
+                <div class="output">
+                    Output:
+                    <pre>{{testcase.output}}</pre>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
-    <form method="POST" id="addForm">
+    <form method="post" id="addForm">
         <div class="form-head">
             <div class="heading">
-                Add Question
+                Add Test Case
             </div>
             <button type="button" onclick="hideAddForm()">X</button>
         </div>
         <div class="form-input">
-            <input type="text" placeholder="Title" name="title">
-            <textarea placeholder="Description" name="discription"></textarea>
-            <button type="submit">Add Question</button>
+            <input type="text" placeholder="Input" name="input">
+            <textarea placeholder="Output" name="output"></textarea>
+            <button type="submit">Add</button>
         </div>
     </form>
+{% endblock %}
+
+{% block script %}
 {% endblock %}

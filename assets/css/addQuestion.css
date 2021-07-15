@@ -1,9 +1,18 @@
 .scrollbox {
   width: 85%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 #hourSelected {
@@ -12,23 +21,28 @@
   margin-left: 15px;
 }
 
-input[type=range] {
+input[type='range'] {
   border: none;
 }
-input[type=range]::-moz-range-track {
+
+input[type='range']::-moz-range-track {
   background: var(--Heather);
 }
-input[type=range]::-moz-range-thumb {
+
+input[type='range']::-moz-range-thumb {
   background: var(--FountainBlue);
   border-color: var(--FountainBlue);
 }
 
 .maincontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: var(--BlackPearl);
   width: 30%;
   overflow-x: hidden;
-  flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
   scroll-behavior: smooth;
   -ms-scroll-snap-type: x mandatory;
       scroll-snap-type: x mandatory;
@@ -40,15 +54,22 @@ input[type=range]::-moz-range-thumb {
 }
 
 .txtarea {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   resize: none;
   padding: 10px;
   color: var(--Heather);
 }
 
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   scroll-snap-align: center;
   padding: 25px;
   margin: 45px;
@@ -57,6 +78,8 @@ input[type=range]::-moz-range-thumb {
 .submitbtn {
   padding: 10px;
   width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: -webkit-min-content;
   width: -moz-min-content;
@@ -64,20 +87,27 @@ input[type=range]::-moz-range-thumb {
   height: 50px;
   border-radius: 5px;
   font-size: 15px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      align-self: center;
   background-color: var(--FountainBlue);
   color: var(--BlackPearl);
 }
 
 .block {
   margin: 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
 }
 
 .txtbox {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 h2 {
@@ -96,7 +126,15 @@ textarea {
 
 .inputrow {
   width: 30%;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-}/*# sourceMappingURL=addQuestion.css.map */
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+/*# sourceMappingURL=addQuestion.css.map */

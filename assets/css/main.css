@@ -3,7 +3,8 @@
   margin: 0;
   padding: 0;
   font-family: "Comfortaa", cursive;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   color: white;
 }
 
@@ -18,17 +19,31 @@ body {
 }
 
 .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  height: 90%;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .content .welcome {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 100%;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 a {
@@ -37,24 +52,33 @@ a {
   border-radius: 5px;
   padding: 10px 15px;
 }
+
 a:hover {
   background-color: var(--bg-color);
 }
 
 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   min-height: 5%;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 20px;
   border-bottom: 1px solid var(--FountainBlue);
 }
+
 header a {
   padding: 10px 20px;
   color: white;
   background-color: #71a6b1;
   border-radius: 5px;
-  box-shadow: 0 0 2px #9b9b9b;
+  -webkit-box-shadow: 0 0 2px #9b9b9b;
+          box-shadow: 0 0 2px #9b9b9b;
   cursor: pointer;
   text-decoration: none;
   margin-left: 10px;
@@ -63,23 +87,40 @@ header a {
 .div1 {
   width: 15%;
   height: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: var(--Heather);
 }
+
 .div1 .dash-wrapper {
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: 1px solid transparent;
 }
+
 .div1 .dash-wrapper img {
   height: 25px;
   width: 25px;
-  filter: invert(1);
+  -webkit-filter: invert(1);
+          filter: invert(1);
   margin: 25px;
 }
+
 .div1 .dash-wrapper a {
   color: inherit;
   background: transparent;
@@ -87,22 +128,32 @@ header a {
   cursor: pointer;
   text-decoration: none;
 }
+
 .div1 .dash-wrapper:hover {
-  box-shadow: 3px 3px 3px var(--Horizon);
+  -webkit-box-shadow: 3px 3px 3px var(--Horizon);
+          box-shadow: 3px 3px 3px var(--Horizon);
   border: 1px solid var(--Horizon);
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   padding-left: 10px;
   color: var(--FountainBlue);
 }
 
 .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 5px;
   border-bottom: 1px solid var(--Heather);
 }
+
 .head h3 {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   padding: 15px;
 }
 
@@ -123,14 +174,15 @@ textarea {
   color: var(--FountainBlue);
   background: transparent;
   border: 1px solid var(--FountainBlue);
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  padding-left: 15px;
   font-size: 15px;
 }
 
 button:hover,
-input[type=button]:hover,
-input[type=submit]:hover {
+input[type="button"]:hover,
+input[type="submit"]:hover {
   background: var(--Heather);
   color: var(--BlackPearl);
-}/*# sourceMappingURL=main.css.map */
+}
+/*# sourceMappingURL=main.css.map */
