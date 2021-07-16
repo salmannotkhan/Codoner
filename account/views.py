@@ -11,7 +11,6 @@ from main.models import Competition, Question, TestCase
 def login_view(request):
     form = AuthenticationForm(request.POST or None)
     error = None
-    print(form.fields)
     if request.method == 'POST':
         user = authenticate(
             username=request.POST['username'], password=request.POST['password'])
@@ -70,16 +69,16 @@ def dashboard_view(request):
 @login_required(login_url='/user/login')
 def competition_view(request, id):
     competition = Competition.objects.filter(id=id).first()
-    questions = Question.objects.filter(competition=competition)
     if request.user != competition.creator:
         return redirect('/user/')
     if request.method == 'POST':
         title = request.POST.get('title')
         description = request.POST.get('description')
         if title != '' and description != '':
-            competition = Competition(
-                title=title, description=description, creator=request.user)
-            competition.save()
+            question = Question(
+                title=title, description=description, competition=competition)
+            question.save()
+    questions = Question.objects.filter(competition=competition)
     context = {
         'competition': competition,
         'questions': questions
@@ -90,9 +89,14 @@ def competition_view(request, id):
 @login_required(login_url='/user/login')
 def question_view(request, id):
     question = Question.objects.filter(id=id).first()
-    testcases = TestCase.objects.filter(question=question)
     if question.competition.creator != request.user:
         return redirect('/user/')
+    if request.method == 'POST':
+        input = request.POST.get('input')
+        output = request.POST.get('output')
+        testcase = TestCase(input=input, output=output, question=question)
+        testcase.save()
+    testcases = TestCase.objects.filter(question=question)
     context = {
         'question': question,
         'testcases': testcases

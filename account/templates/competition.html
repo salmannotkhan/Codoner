@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/question.css' %}">
 <script>
@@ -23,13 +24,18 @@
         </div>
         <div class="testcases">
             {% for question in questions %}
-            <div class="testcase">
-                <a href="/user/question/{{question.id}}/">Question {{forloop.counter}}. {{question.title}}</a>
-            </div>
+                <div class="testcase">
+                    <a href="/user/question/{{question.id}}/">Question {{forloop.counter}}. {{question.title}}</a>
+                </div>
+            {% empty %}
+                <div class="testcase">
+                    No Questions found, Add some.
+                </div>
             {% endfor %}
         </div>
     </div>
     <form method="POST" id="addForm">
+        {% csrf_token %}
         <div class="form-head">
             <div class="heading">
                 Add Question
@@ -38,7 +44,7 @@
         </div>
         <div class="form-input">
             <input type="text" placeholder="Title" name="title">
-            <textarea placeholder="Description" name="discription"></textarea>
+            <textarea placeholder="Description" name="description"></textarea>
             <button type="submit">Add Question</button>
         </div>
     </form>

@@ -25,21 +25,26 @@
         </div>
         <div class="testcases">
             {% for testcase in testcases %}
-            <div class="testcase">
-                <div class="test-head"><b>Test Case {{forloop.counter}}</b></div>
-                <div class="input">
-                    Input:
-                    <pre>{{testcase.input}}</pre>
+                <div class="testcase">
+                        <div class="test-head"><b>Test Case {{forloop.counter}}</b></div>
+                    <div class="input">
+                        Input:
+                        <pre>{{testcase.input}}</pre>
+                    </div>
+                    <div class="output">
+                        Output:
+                        <pre>{{testcase.output}}</pre>
+                    </div>
                 </div>
-                <div class="output">
-                    Output:
-                    <pre>{{testcase.output}}</pre>
+            {% empty %}
+                <div class="testcase">
+                    No Test cases found, create some.
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
     <form method="post" id="addForm">
+        {% csrf_token %}
         <div class="form-head">
             <div class="heading">
                 Add Test Case

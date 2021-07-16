@@ -1,3 +1,7 @@
+.content {
+  height: 90%;
+}
+
 form {
   -ms-flex-item-align: center;
       align-self: center;
@@ -95,7 +99,7 @@ form .row input {
   padding: 13px;
 }
 
-form .row input[type='submit'] {
+form .row input[type="submit"] {
   background-color: var(--Horizon);
   width: 50%;
   border-radius: 6px;

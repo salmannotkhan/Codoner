@@ -31,9 +31,6 @@ body.dark {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .content .welcome {
@@ -100,14 +97,17 @@ header h2 button {
 
 header a {
   padding: 10px 20px;
-  color: white;
-  background-color: #71a6b1;
   border-radius: 5px;
   -webkit-box-shadow: 0 0 2px #9b9b9b;
           box-shadow: 0 0 2px #9b9b9b;
   cursor: pointer;
   text-decoration: none;
   margin-left: 10px;
+}
+
+header a:hover {
+  background-color: var(--Heather);
+  color: black;
 }
 
 .div1 {
@@ -207,8 +207,9 @@ textarea {
 
 button:hover,
 input[type="button"]:hover,
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+input[type="reset"]:hover {
   background: var(--Heather);
-  color: var(--BlackPearl);
+  color: white;
 }
 /*# sourceMappingURL=main.css.map */

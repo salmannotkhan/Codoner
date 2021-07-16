@@ -1,3 +1,6 @@
+content {
+	height: 90%;
+}
 .container {
 	max-width: 650px;
 	background-color: var(--BlackPearl);
@@ -13,7 +16,7 @@
 		text-align: center;
 	}
 	form {
-		input[type='submit'] {
+		input[type="submit"] {
 			background-color: var(--Horizon);
 			border: 1px solid var(--FountainBlue);
 			width: 30%;

@@ -2,39 +2,50 @@
 {% load static %}
 
 {% block stylesheet %}
-    <style>
-        form {
-            width: 25%;
-            padding: 5px;
-        }
-        h1, input, textarea, button {
-            margin: 10px;
-            padding: 10px;
-        }
-        textarea {
-             width: 100%;
-        }
-        a:hover{
-            box-shadow: 5px 5px 3px black;
-        }
-    </style>
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
+<script>
+    function showAddForm() {
+        console.log('hello')
+        addForm.style.top = '50%'
+    }
+    function hideAddForm() {
+        addForm.style.top = '-100%'
+    }
+</script>
 {% endblock %}
-
 {% block content %}
-{% include "admin_nav.html" %}
-<div class="welcome">
-    {% for competition in competitions %}
-        <a href="competition/{{competition.id}}">{{competition.title}}</a>
-    {% empty %}
-        <form method="POST"> 
-            <h1>
+    <div class="question">
+        <div class="question-title">
+            Competitions
+            <button onclick="showAddForm()">Create Competition</button>
+        </div>
+        <div class="question-description">
+            All competitions created by you
+        </div>
+        <div class="testcases">
+            {% for competition in competitions %}
+                <div class="testcase">
+                    <a href="/user/competition/{{competition.id}}/">{{forloop.counter}}. {{competition.title}}</a>
+                </div>
+            {% empty %}
+                <div class="testcase">
+                    No Competition found, Create one
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <form method="post" id="addForm">
+        {% csrf_token %}
+        <div class="form-head">
+            <div class="heading">
                 Create Competition
-            </h1>
-            {% csrf_token %}
-            <input type="text" name="title" placeholder="Enter title">
-            <textarea name="description" cols="30" rows="10" placeholder="Enter Description"></textarea>
+            </div>
+            <button type="button" onclick="hideAddForm()">X</button>
+        </div>
+        <div class="form-input">
+            <input type="text" placeholder="Enter title" name="title">
+            <textarea placeholder="Enter Description" name="description"></textarea>
             <button type="submit">Create Competition</button>
-        </form>
-    {% endfor %}
-</div>
+        </div>
+    </form>
 {% endblock %}

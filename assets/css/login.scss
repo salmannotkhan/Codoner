@@ -1,3 +1,6 @@
+.content {
+	height: 90%;
+}
 form {
 	align-self: center;
 	justify-self: center;
@@ -68,7 +71,7 @@ form {
 			margin-right: 0;
 			align-self: flex-end;
 			padding: 13px;
-			&[type='submit'] {
+			&[type="submit"] {
 				background-color: var(--Horizon);
 				width: 50%;
 				border-radius: 6px;
