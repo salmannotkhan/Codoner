@@ -1,19 +1,15 @@
 import os
 import subprocess
-
 from django.http import JsonResponse
-from django.shortcuts import HttpResponse, render, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-
-from .models import Competition, Question, TestCase
+from .models import Question, TestCase
 
 
 @login_required(login_url='/user/login/')
 def index(request):
-    competition = Competition.objects.filter(
-        title=request.user.details.competition_name).first()
     questions = Question.objects.filter(
-        competition=competition)
+        competition=request.user.detail.competition)
     context = {
         'questions': questions
     }
@@ -68,7 +64,6 @@ def java_execute(question_id: int, test_id: int, filename: str):
     code_snippet = f'public class {filename.replace(".java", "")} {{{open(filename, "r").read()}}}'
     open(filename, 'w').write(code_snippet)
     output_file = filename.replace('.java', '')
-
     question = Question.objects.filter(id=question_id).first()
     testcase = TestCase.objects.filter(question=question)[test_id]
     comp = subprocess.run(['javac', filename],
@@ -88,7 +83,10 @@ def java_execute(question_id: int, test_id: int, filename: str):
         output = '\r\n'.join(output.splitlines(keepends=False))
         if output != testcase.output:
             result['passed'] = False
-            result['error'] = output
+            if error:
+                result['error'] = error
+            else:
+                result['error'] = output
     except subprocess.TimeoutExpired:
         result['passed'] = False
         result['error'] = 'Code execution timed out'

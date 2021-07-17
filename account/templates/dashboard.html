@@ -25,7 +25,13 @@
         <div class="testcases">
             {% for competition in competitions %}
                 <div class="testcase">
-                    <a href="/user/competition/{{competition.id}}/">{{forloop.counter}}. {{competition.title}}</a>
+                    <a href="/user/competition/{{competition.id}}/">
+                        <b>
+                            Competition {{forloop.counter}} <br><br>
+                        </b>
+                        {{competition.title}} <br><br>
+                        {{competition.description}}
+                    </a>
                 </div>
             {% empty %}
                 <div class="testcase">

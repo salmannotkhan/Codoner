@@ -1,78 +1,102 @@
 .question {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  padding: 50px;
-  flex-direction: column;
-  justify-content: space-around;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding: 50px;
+	margin: 0px 200px;
+	flex-direction: column;
+	overflow-x: hidden;
+	justify-content: space-around;
 }
 
 .question-title {
-  font-size: xx-large;
-  display: flex;
-  justify-content: space-between;
-  button {
-    width: max-content;
-    padding: 10px;
-  }
+	font-size: xx-large;
+	display: flex;
+	justify-content: space-between;
+	button {
+		width: max-content;
+		padding: 10px;
+	}
 }
 
 .question-title,
 .question-description,
 .testcases {
-  margin: 10px;
+	margin: 10px;
 }
 
 .testcases {
-  flex: 1;
-  div {
-    margin: 20px;
-  }
-  pre {
-    margin-top: 10px;
-    padding: 10px;
-    color: white;
-    background-color: black;
-  }
+	display: flex;
+	overflow-x: scroll;
+	scroll-snap-type: x mandatory;
+	scrollbar-width: thin;
+	scrollbar-color: black transparent;
+	scroll-padding: 0px 10px;
+	.testcase {
+		transition: box-shadow 0.5s ease;
+		scroll-snap-align: center;
+		border: 1px solid var(--Heather);
+		border-radius: 5px;
+		min-width: 425px;
+		min-height: 425px;
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+			padding: 20px;
+		}
+		&:hover {
+			box-shadow: 5px 5px 10px var(--Heather);
+		}
+	}
+	div {
+		margin: 20px;
+	}
+	pre {
+		margin-top: 10px;
+		padding: 10px;
+		color: white;
+		background-color: black;
+	}
 }
 
 form {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  background-color: black;
-  height: 500px;
-  width: 500px;
-  top: -100%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: top 0.5s ease;
-  padding: 20px;
-  border-radius: 5px;
-  .form-head {
-    font-size: large;
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    .heading {
-      flex: 1;
-    }
-    button {
-      width: 50px;
-    }
-  }
-  .form-input {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    justify-content: space-evenly;
-    input,
-    textarea {
-      padding: 10px;
-    }
-    textarea {
-      height: 250px;
-      resize: none;
-    }
-  }
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	background-color: black;
+	height: 500px;
+	width: 500px;
+	top: -100%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: top 0.5s ease;
+	padding: 20px;
+	border-radius: 5px;
+	.form-head {
+		font-size: large;
+		margin: 10px;
+		display: flex;
+		align-items: center;
+		.heading {
+			flex: 1;
+		}
+		button {
+			width: 50px;
+		}
+	}
+	.form-input {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		justify-content: space-evenly;
+		input,
+		textarea {
+			padding: 10px;
+		}
+		textarea {
+			height: 250px;
+			resize: none;
+		}
+	}
 }

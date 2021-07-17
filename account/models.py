@@ -1,8 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from main.models import Competition
 
 
-class Details(models.Model):
+class Detail(models.Model):
     id = models.OneToOneField(
         to=User, on_delete=models.CASCADE, primary_key=True)
-    competition_name = models.CharField(max_length=256)
+    competition = models.ForeignKey(Competition, on_delete=models.CASCADE)
