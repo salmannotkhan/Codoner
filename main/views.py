@@ -23,7 +23,8 @@ def playground(request, id):
     if request.method == 'POST':
         lang = request.POST['language']
         filename = request.user.username + '.' + lang
-        open(filename, 'w').write(request.POST['code'])
+        code = request.POST.get('code')
+        open(filename, 'w').write(code)
         testcase_results = []
         for testcase in range(len(testcases)):
             if lang == 'py':
@@ -34,9 +35,8 @@ def playground(request, id):
                 result = java_execute(question.id, testcase, filename)
             testcase_results.append(str(int(result['passed'])))
         os.remove(filename)
-
         result = Result(user=request.user, question=question,
-                        testcase=','.join(testcase_results), lang=lang)
+                        testcase=','.join(testcase_results), lang=lang, code=code)
         result.save()
         return redirect('/code')
     context = {

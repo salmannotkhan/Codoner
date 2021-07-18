@@ -25,7 +25,7 @@
         <div class="testcases">
             {% for question in questions %}
                 <div class="testcase">
-                    <a href="questions/">
+                    <a href="/user/question/{{question.id}}">
                         <b>
                             Question {{forloop.counter}} <br><br>
                         </b>

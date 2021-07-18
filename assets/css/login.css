@@ -35,7 +35,6 @@ form .input-box input {
   height: 40px;
   width: 100%;
   border-radius: 5px;
-  color: var(--FountainBlue);
   background: transparent;
   border: 1px solid var(--FountainBlue);
   -webkit-transition: all 0.3s ease;
@@ -63,7 +62,6 @@ form input {
   border-radius: 8px;
   border: 1px solid var(--FountainBlue);
   font-size: 14px;
-  color: var(--FountainBlue);
 }
 
 form .error {

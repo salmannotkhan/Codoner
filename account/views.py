@@ -122,7 +122,8 @@ def result_view(request, id):
             r['question'] = question
             result = results.filter(user=user, question=question).first()
             if result:
-                r['testcases'] = [bool(i) for i in result.testcase.split(',')]
+                r['testcases'] = [bool(int(i))
+                                  for i in result.testcase.split(',')]
             question_list.append(r)
         user_result['questions'] = question_list
         user_results.append(user_result)
@@ -134,3 +135,23 @@ def result_view(request, id):
         'user_results': user_results
     }
     return render(request, 'result.html', context=context)
+
+
+def detailed_result_view(request, cid, uid):
+    competition = Competition.objects.filter(id=cid).first()
+    user = User.objects.filter(id=uid).first()
+    questions = Question.objects.filter(competition=competition)
+    results = Result.objects.filter(user=user, question__in=questions)
+    question_list = []
+    for question in questions:
+        r = {}
+        r['question'] = question
+        result = results.filter(user=user, question=question).first()
+        r['detail'] = result
+        if result:
+            testcases = [bool(int(i)) for i in result.testcase.split(',')]
+            print(result.testcase)
+            r['testcases'] = zip(question.testcase_set.values(), testcases)
+        question_list.append(r)
+    context = {'user': user, 'results': question_list, }
+    return render(request, 'detailed_result.html', context=context)

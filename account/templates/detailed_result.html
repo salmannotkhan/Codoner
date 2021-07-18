@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="question">
+        <div class="question-title">
+            {{user.get_full_name}}
+        </div>
+        <div class="question-description">
+            {{user.email}}
+        </div>
+        {% for result in results %}
+        <div class="test-head">
+            <b>{{result.question.title}}</b><br>
+            {{result.question.description}}
+        </div>
+        <b>Language:</b>{{result.detail.lang}}<br><br><br>
+        <b>Code:</b><br><br>
+        <pre>{{result.detail.code}}
+        </pre>
+        <div class="testcases">
+                {% for testcase, result in result.testcases  %}
+                
+                <div class="testcase">
+                    <div class="test-head"><b>Test Case {{forloop.counter}} - {% if result %} Passed {% else %} Failed {% endif %}</b></div>
+                    <div class="input">
+                        Input:
+                        <pre>{{testcase.input}}</pre>
+                    </div>
+                    <div class="output">
+                        Output:
+                        <pre>{{testcase.output}}</pre>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

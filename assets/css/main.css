@@ -201,7 +201,7 @@ option,
 button,
 textarea {
   border-radius: 5px;
-  color: var(--FountainBlue);
+  color: var(--font-color);
   background: transparent;
   border: 1px solid var(--FountainBlue);
   -webkit-transition: all 0.3s ease;
