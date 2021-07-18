@@ -16,8 +16,13 @@
     <div class="question">
         <div class="question-title">
             {{competition.title}}
-            <a href="result/">View Submission</a>
-            <button onclick="showAddForm()">Add Question</button>
+            <div>
+                <button><a href="/user/download/participants/{{competition.id}}">Download Participants List</a></button>
+                <a href="result/">
+                    <button>View Submission</button>
+                </a>
+                <button onclick="showAddForm()">Add Question</button>
+            </div>
         </div>
         <div class="question-description">
             {{competition.description}}

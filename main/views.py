@@ -28,15 +28,19 @@ def playground(request, id):
         testcase_results = []
         for testcase in range(len(testcases)):
             if lang == 'py':
+                language = 'Python'
                 result = python_execute(question.id, testcase, filename)
             elif lang == 'c':
+                language = 'C'
                 result = c_execute(question.id, testcase, filename)
             elif lang == 'java':
+                language = 'Java'
                 result = java_execute(question.id, testcase, filename)
             testcase_results.append(str(int(result['passed'])))
         os.remove(filename)
-        result = Result(user=request.user, question=question,
-                        testcase=','.join(testcase_results), lang=lang, code=code)
+        passed = all([bool(int(i)) for i in testcase_results])
+        result = Result(user=request.user, question=question, testcase=','.join(testcase_results),
+                        lang=language, code=code, passed=passed)
         result.save()
         return redirect('/code')
     context = {

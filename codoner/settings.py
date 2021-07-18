@@ -134,3 +134,6 @@ STATIC_ROOT = Path(BASE_DIR).joinpath('static')
 STATICFILES_DIRS = [
     'assets',
 ]
+
+FILE_UPLOAD_HANDLERS = ('django_excel.ExcelMemoryFileUploadHandler',
+                        'django_excel.TemporaryExcelFileUploadHandler')

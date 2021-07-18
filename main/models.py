@@ -36,3 +36,4 @@ class Result(models.Model):
     testcase = models.CharField(max_length=256)
     lang = models.CharField(max_length=256, blank=True)
     code = models.TextField()
+    passed = models.BooleanField()
