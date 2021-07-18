@@ -1,11 +1,12 @@
-from django.db.models.query import QuerySet
+from unittest import result
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserForm
 from .models import Detail
-from main.models import Competition, Question, TestCase
+from main.models import Competition, Question, Result, TestCase
 
 
 def login_view(request):
@@ -103,3 +104,33 @@ def question_view(request, id):
         'testcases': testcases
     }
     return render(request, 'question.html', context=context)
+
+
+def result_view(request, id):
+    competition = Competition.objects.filter(id=id).first()
+    users = User.objects.filter(detail__competition=competition)
+    questions = Question.objects.filter(competition=competition)
+    results = Result.objects.filter(
+        user__in=users, question__in=questions)
+    user_results = []
+    for user in users:
+        user_result = {}
+        user_result['user'] = user
+        question_list = []
+        for question in questions:
+            r = {}
+            r['question'] = question
+            result = results.filter(user=user, question=question).first()
+            if result:
+                r['testcases'] = [bool(i) for i in result.testcase.split(',')]
+            question_list.append(r)
+        user_result['questions'] = question_list
+        user_results.append(user_result)
+
+    print(user_results)
+
+    context = {
+        'competition': competition,
+        'user_results': user_results
+    }
+    return render(request, 'result.html', context=context)

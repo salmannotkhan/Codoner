@@ -29,7 +29,7 @@ n = input()</pre>
             </div>
          </div>
         <div class="main">
-            <form>
+            <form method="POST">
                 {% csrf_token %}
                 <input type="hidden" id="totalTestCases" name="totalcases" value="{{totalTestCases}}">
                 <input type="hidden" id="currentCase" name="currentCase" value="0">
@@ -52,7 +52,7 @@ n = input()</pre>
                             <option value="py">Python</option>
                             <option value="java">Java</option>
                         </select>
-                        <input type="button" value="Submit">
+                        <input type="submit" value="Submit">
                         <input type="button" id="run" onclick="sendreq()" value="Run">
                         <input type="reset">
                     </div>

@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{% static 'css/question.css' %}">
 <script>
     function showAddForm() {
-        console.log('hello')
         addForm.style.top = '50%'
     }
     function hideAddForm() {
@@ -17,6 +16,7 @@
     <div class="question">
         <div class="question-title">
             {{competition.title}}
+            <a href="result/">View Submission</a>
             <button onclick="showAddForm()">Add Question</button>
         </div>
         <div class="question-description">
@@ -25,7 +25,7 @@
         <div class="testcases">
             {% for question in questions %}
                 <div class="testcase">
-                    <a href="/user/question/{{question.id}}/">
+                    <a href="questions/">
                         <b>
                             Question {{forloop.counter}} <br><br>
                         </b>

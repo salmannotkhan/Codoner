@@ -1,9 +1,9 @@
 import os
 import subprocess
 from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .models import Question, TestCase
+from .models import Question, Result, TestCase
 
 
 @login_required(login_url='/user/login/')
@@ -19,11 +19,30 @@ def index(request):
 @login_required(login_url='/user/login/')
 def playground(request, id):
     question = get_object_or_404(Question, id=id)
-    testcase = TestCase.objects.filter(question=question)
+    testcases = TestCase.objects.filter(question=question)
+    if request.method == 'POST':
+        lang = request.POST['language']
+        filename = request.user.username + '.' + lang
+        open(filename, 'w').write(request.POST['code'])
+        testcase_results = []
+        for testcase in range(len(testcases)):
+            if lang == 'py':
+                result = python_execute(question.id, testcase, filename)
+            elif lang == 'c':
+                result = c_execute(question.id, testcase, filename)
+            elif lang == 'java':
+                result = java_execute(question.id, testcase, filename)
+            testcase_results.append(str(int(result['passed'])))
+        os.remove(filename)
+
+        result = Result(user=request.user, question=question,
+                        testcase=','.join(testcase_results), lang=lang)
+        result.save()
+        return redirect('/code')
     context = {
         'question': question,
-        'testcase': testcase[0],
-        'totalTestCases': len(testcase)
+        'testcase': testcases[0],
+        'totalTestCases': len(testcases)
     }
     return render(request, 'playground.html', context=context)
 

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/question.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="question">
+        <div class="question-title">
+            {{competition.title}} Results
+        </div>
+        <div class="question-description">
+            {{competition.description}}
+        </div>
+        <div class="testcases">
+            {% for result in user_results %}
+                <div class="testcase">
+                    <div class="test-head"><b>{{result.user.email}}</b></div>
+                    {% for question in result.questions %}
+                        <div class="input">
+                            Question: {{question.question.title}}
+                        </div>
+                        <div class="output">
+                            Testcases passed:
+                            {% for testcase in question.testcases %}
+                            <span class="result 
+                                {% if testcase %}
+                                    passed"
+                                {% endif %}>
+                            </span>
+                            {% empty %}
+                                <br>No attempt<br>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+{% endblock %}

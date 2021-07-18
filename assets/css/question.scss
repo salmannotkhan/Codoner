@@ -39,6 +39,16 @@
 		border-radius: 5px;
 		min-width: 425px;
 		min-height: 425px;
+		span {
+			display: inline-block;
+			background-color: red;
+			height: 10px;
+			width: 10px;
+			border-radius: 50%;
+			&.passed {
+				background-color: green;
+			}
+		}
 		a {
 			display: block;
 			height: 100%;
